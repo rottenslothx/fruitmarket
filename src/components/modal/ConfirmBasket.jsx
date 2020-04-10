@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Header, Icon, Modal } from "semantic-ui-react";
 import { Dropdown } from "semantic-ui-react";
+
 const friendOptions = [
   {
     key: "1",
@@ -60,9 +61,6 @@ const ModalBasicExample = (props) => (
       />
     </Modal.Content>
     <Modal.Actions>
-      <Button basic color="red" inverted>
-        <Icon name="remove" /> No
-      </Button>
       <Button color="green" inverted>
         <Icon name="checkmark" /> ยืนยัน
       </Button>

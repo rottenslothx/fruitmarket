@@ -32,6 +32,8 @@ export default function EditProduct() {
   const [addUrl, setAddUrl] = React.useState([]);
   const [addAmount, setAddAmount] = React.useState([]);
 
+  const [activeDelete, setActiveDelete] = React.useState([]);
+
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
 
@@ -63,7 +65,7 @@ export default function EditProduct() {
   };
 
   const Delete = (e) => {
-    console.log(e);
+    console.log(activeDelete);
   };
 
   return (
@@ -148,12 +150,18 @@ export default function EditProduct() {
                     หากต้องการยกเลิกให้กดกลับ
                   </Modal.Content>
                 </Modal>
-
                 <Modal
                   open={modalOpen}
                   onClose={handleClose}
                   trigger={
-                    <Button inverted color="red" onClick={handleOpen}>
+                    <Button
+                      inverted
+                      color="red"
+                      onClick={() => {
+                        handleOpen();
+                        setActiveDelete(i);
+                      }}
+                    >
                       ลบ
                     </Button>
                   }

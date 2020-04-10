@@ -1,6 +1,6 @@
 let fruits = [
   {
-    id: "1",
+    id: 1,
     title: "มะม่วง",
     count: 10,
     detail: "มะม่วงห่าม",
@@ -9,7 +9,7 @@ let fruits = [
       "https://f.btwcdn.com/store-34660/product/49e0623f-5e1d-9c4f-d254-5b7f69a49e9a.jpg",
   },
   {
-    id: "2",
+    id: 2,
     title: "มะกรูด",
     count: 20,
     detail: "มะกรูดหวาน",
@@ -18,7 +18,7 @@ let fruits = [
       "https://i.pinimg.com/originals/d2/32/fa/d232fae1e2ab081c5ebf8f8c002743ac.jpg",
   },
   {
-    id: "3",
+    id: 3,
     title: "มะนาว",
     count: 30,
     detail: "มะนาวลูกใหญ๋",
@@ -49,12 +49,13 @@ let fruitModel = {
       console.log(fruit);
       console.log(fruit.fruits);
       return fruit.fruits;
+    } catch {
+      return "";
     }
-    catch { return "" }
   },
   delete(id) {
-    let fruitsData = this.get()
-    let fruits = fruitsData.filter(function(value, index, arr) {
+    let fruitsData = this.get();
+    let fruits = fruitsData.filter(function (value, index, arr) {
       return value.id != id;
     });
     localStorage.setItem("fruits", JSON.stringify({ fruits }));
@@ -62,7 +63,7 @@ let fruitModel = {
     return true;
   },
   modify(body) {
-    let fruits = this.get()
+    let fruits = this.get();
     let newFruits = fruits.filter((fruit) => fruit.id !== body.id);
     newFruits.push({
       id: body.id,
@@ -77,7 +78,7 @@ let fruitModel = {
     return true;
   },
   create(body) {
-    let fruits = this.get()
+    let fruits = this.get();
     fruits = fruits.push({
       id: fruits.length + 1,
       title: body.title,

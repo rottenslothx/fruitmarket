@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Table } from "semantic-ui-react";
 import userModel from "../../../storage/users";
 
