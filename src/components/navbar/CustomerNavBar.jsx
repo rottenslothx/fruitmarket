@@ -53,6 +53,10 @@ class DesktopContainer extends Component {
   activeMenuHome = () => this.setState({ activeItem: "Home" });
   activeMenuProduct = () => this.setState({ activeItem: "Product" });
 
+  componentDidMount() {
+    this.setState({ username: userModel.getActivedUser().email });
+  }
+
   render() {
     const { children } = this.props;
     const { fixed } = this.state;

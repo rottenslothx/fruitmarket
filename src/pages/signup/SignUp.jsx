@@ -52,7 +52,7 @@ function SignUp() {
         setSuccess(true);
         setNotMatch(false);
         setTimeout(() => {
-          window.location.href = "/";
+          window.location.href = "/home";
         }, 2000);
       }
     } else {

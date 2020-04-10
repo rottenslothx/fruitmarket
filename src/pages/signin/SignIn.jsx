@@ -9,9 +9,7 @@ import {
   Icon,
   Message,
 } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 import LoginError from "../../components/alert/LoginError";
-import { getFirestore } from "redux-firestore";
 import userModel from "../../storage/users";
 
 function SignIn() {
