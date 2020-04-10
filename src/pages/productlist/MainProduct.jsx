@@ -1,21 +1,13 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  Image,
-  Grid,
-  Icon,
-  Input,
-  Message,
-} from "semantic-ui-react";
+import { Card, Grid, Input } from "semantic-ui-react";
 import CardProduct from "../../components/cardProduct/CardProduct";
-import { productlist } from "./product";
 import LoginAlert from "../../components/alert/LoginAlert";
+import fruitModel from "../../storage/fruits";
 
 function MainProduct() {
   const [product, setProduct] = React.useState([]);
   React.useEffect(() => {
-    setProduct(productlist.product());
+    setProduct(fruitModel.get());
   }, []);
 
   React.useEffect(() => {
@@ -51,7 +43,7 @@ function MainProduct() {
           <CardProduct
             key={key}
             title={i.title}
-            count={i.count}
+            count={i.count + " กก."}
             detail={i.detail}
             price={i.price}
             imageUrl={i.imageUrl}

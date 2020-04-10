@@ -1,25 +1,11 @@
 import { useForm } from "react-hook-form";
 import React from "react";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Grid,
-  Header,
-  Icon,
-  Message,
-  Input,
-  Loader,
-  Dimmer,
-  Image,
-} from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Button, Form, Grid, Header, Icon, Loader } from "semantic-ui-react";
 import RegisterSuccessful from "../../components/alert/RegisterSuccessful";
 import RegisterErrAdyUsed from "../../components/alert/RegisterErrAdyUsed";
 import RegisterConfirmPassword from "../../components/alert/RegisterConfirmPassword";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { getFirestore } from "redux-firestore";
 import { db } from "../../firebase/fbConfig";
 
 function SignUp() {
