@@ -3,12 +3,7 @@ import React, { Component } from "react";
 import {
   Button,
   Container,
-  Divider,
-  Grid,
-  Header,
   Icon,
-  Image,
-  List,
   Menu,
   Responsive,
   Segment,
@@ -52,6 +47,10 @@ class DesktopContainer extends Component {
 
   activeMenuHome = () => this.setState({ activeItem: "Home" });
   activeMenuProduct = () => this.setState({ activeItem: "Product" });
+
+  componentDidMount() {
+    this.setState({ username: userModel.getActivedUser().email });
+  }
 
   render() {
     const { children } = this.props;
@@ -131,7 +130,7 @@ class DesktopContainer extends Component {
                     as={Link}
                     onClick={() => {
                       userModel.logout();
-                      window.location.href = "/login";
+                      window.location.href = "/signin";
                     }}
                     inverted={!fixed}
                   >

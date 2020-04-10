@@ -9,9 +9,7 @@ import {
   Icon,
   Message,
 } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 import LoginError from "../../components/alert/LoginError";
-import { getFirestore } from "redux-firestore";
 import userModel from "../../storage/users";
 
 function SignIn() {
@@ -35,7 +33,7 @@ function SignIn() {
       setTimeout(() => {
         window.location.href = "/products";
       }, 2000);
-    }
+    } else alert("Email หรือ Password ไม่ถูกต้อง");
   };
   // watch input value by passing the name of it
 

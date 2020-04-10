@@ -9,9 +9,7 @@ function HotDeal() {
     setProduct(fruitModel.get());
   }, []);
 
-  React.useEffect(() => {
-    console.log(product);
-  }, [product]);
+  React.useEffect(() => {}, [product]);
 
   return (
     <div>
