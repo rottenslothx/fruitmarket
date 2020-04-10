@@ -23,17 +23,20 @@ import userModel from "./storage/users";
 
 function App() {
   const [active, setActive] = React.useState(null);
+  const [role, setRole] = React.useState(null);
 
   React.useEffect(() => {
     userModel.initial();
+    if (userModel.getActivedUser()) setRole(userModel.getActivedUser().role);
     setActive(userModel.getActivedUser());
   }, []);
 
   return (
     <div className="App">
       <BrowserRouter>
-        {active && <CustomerNavBar />}
-        {!active && <NavBar />}
+        {role === "user" && <CustomerNavBar />}
+        {role === "admin" && <VenderNavBar />}
+        {!role && <NavBar />}
         <Switch>
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />

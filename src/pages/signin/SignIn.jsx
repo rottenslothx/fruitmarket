@@ -33,7 +33,7 @@ function SignIn() {
       setTimeout(() => {
         window.location.href = "/products";
       }, 2000);
-    }
+    } else alert("Email หรือ Password ไม่ถูกต้อง");
   };
   // watch input value by passing the name of it
 

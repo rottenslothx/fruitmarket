@@ -3,20 +3,23 @@ import { Card, Grid, Input } from "semantic-ui-react";
 import CardProduct from "../../components/cardProduct/CardProduct";
 import LoginAlert from "../../components/alert/LoginAlert";
 import fruitModel from "../../storage/fruits";
+import userModel from "../../storage/users";
 
 function MainProduct() {
   const [product, setProduct] = React.useState([]);
+  const [loggedin, setLoggedinProduct] = React.useState(null);
+
   React.useEffect(() => {
     setProduct(fruitModel.get());
   }, []);
 
   React.useEffect(() => {
-    console.log(product);
+    setLoggedinProduct(userModel.getActivedUser());
   }, [product]);
 
   return (
     <div>
-      <LoginAlert />
+      {!loggedin && <LoginAlert />}
       <br></br>
       <Grid>
         <Grid.Row columns={5}>

@@ -7,7 +7,6 @@ class CustomerList extends Component {
 
   async componentDidMount() {
     const result = await axios.get("http://localhost:8080/users");
-    console.log(result);
     var result2 = [];
     var count = 0;
     for (var i in result.data) {
@@ -15,9 +14,7 @@ class CustomerList extends Component {
       result.data[i].id = count;
       result2.push(result.data[i]);
     }
-    console.log(result2);
     this.setState({ data: result2 });
-    console.log(this.state.data);
   }
 
   render() {

@@ -33,6 +33,19 @@ let userModel = {
     const thisUsers = JSON.parse(localStorage.getItem("users"));
     return thisUsers.find((user) => user.email === email);
   },
+  addMoney(amount, id) {
+    let thisUsers = JSON.parse(localStorage.getItem("users"));
+    let newUser;
+    thisUsers.map((user) => {
+      if (user.id === id) {
+        user.money = user.money + amount;
+        newUser = user;
+      }
+    });
+    localStorage.setItem("users", JSON.stringify(thisUsers));
+    localStorage.setItem("user", JSON.stringify(newUser));
+    return thisUsers;
+  },
   create(body) {
     let thisUsers = JSON.parse(localStorage.getItem("users"));
     const thisUsers2 = thisUsers.concat({

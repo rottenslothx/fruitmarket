@@ -18,9 +18,7 @@ function Home() {
     setProduct(productlist.product());
   }, []);
 
-  React.useEffect(() => {
-    console.log(product);
-  }, [product]);
+  React.useEffect(() => {}, [product]);
 
   return (
     <div>

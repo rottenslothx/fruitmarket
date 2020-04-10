@@ -3,12 +3,7 @@ import React, { Component } from "react";
 import {
   Button,
   Container,
-  Divider,
-  Grid,
-  Header,
   Icon,
-  Image,
-  List,
   Menu,
   Responsive,
   Segment,
@@ -16,6 +11,7 @@ import {
   Visibility,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import userModel from "../../storage/users";
 
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
@@ -101,7 +97,14 @@ class DesktopContainer extends Component {
                   ประวัติการขาย
                 </Menu.Item>
                 <Menu.Item position="right">
-                  <Button as={Link} to="/signin" inverted={!fixed}>
+                  <Button
+                    as={Link}
+                    onClick={() => {
+                      userModel.logout();
+                      window.location.href = "/signin";
+                    }}
+                    inverted={!fixed}
+                  >
                     Log out
                   </Button>
                 </Menu.Item>
