@@ -7,7 +7,6 @@ let cartModel = {
   },
   addToCart(name, amount) {
     let fruits = JSON.parse(localStorage.getItem("fruits"));
-    console.log(fruits);
     let Cart = [];
     let fruit = fruits.fruits.find((item) => item.title === name);
     if (JSON.parse(localStorage.getItem("cart"))) {

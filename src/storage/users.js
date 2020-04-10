@@ -51,7 +51,6 @@ let userModel = {
   },
   create(body) {
     let thisUsers = JSON.parse(localStorage.getItem("users"));
-    console.log(thisUsers[2]);
     const thisUsers2 = thisUsers.concat({
       id: thisUsers[thisUsers.length - 1].id + 1,
       email: body.email,
@@ -63,18 +62,6 @@ let userModel = {
       role: "user",
     });
     localStorage.setItem("users", JSON.stringify(thisUsers2));
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        email: body.email,
-        firstname: body.firstname,
-        lastname: body.lastname,
-        money: 0,
-        password: body.password,
-        phone: body.phone,
-        role: "user",
-      })
-    );
     return localStorage.user;
   },
   login(body) {
