@@ -52,7 +52,7 @@ function SignUp() {
         setSuccess(true);
         setNotMatch(false);
         setTimeout(() => {
-          window.location.href = "/home";
+          window.location.href = "/signin";
         }, 2000);
       }
     } else {
