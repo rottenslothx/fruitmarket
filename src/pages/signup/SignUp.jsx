@@ -1,26 +1,11 @@
 import { useForm } from "react-hook-form";
 import React from "react";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Grid,
-  Header,
-  Icon,
-  Message,
-  Input,
-  Loader,
-  Dimmer,
-  Image,
-} from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Button, Form, Grid, Header, Icon, Loader } from "semantic-ui-react";
 import RegisterSuccessful from "../../components/alert/RegisterSuccessful";
 import RegisterErrAdyUsed from "../../components/alert/RegisterErrAdyUsed";
 import RegisterConfirmPassword from "../../components/alert/RegisterConfirmPassword";
-import axios from "axios";
+import userModel from "../../storage/users";
 import { useHistory } from "react-router-dom";
-import { getFirestore } from "redux-firestore";
-import { db } from "../../firebase/fbConfig";
 
 function SignUp() {
   const [firstname, setFirstname] = React.useState("");
@@ -30,6 +15,7 @@ function SignUp() {
   const [password, setPassword] = React.useState("");
   const [confirmpassword, setConfirmpassword] = React.useState("");
 
+  const history = useHistory();
   //UI checker for error.
   const [success, setSuccess] = React.useState(false);
   const [adyUsed, setAdyUsed] = React.useState(false);
@@ -37,7 +23,6 @@ function SignUp() {
   const [confirmPasswordIsEmpty, setConfirmPasswordIsEmpty] = React.useState(
     false
   );
-  let history = useHistory();
 
   React.useEffect(() => {
     register({ name: "firstname" }, { required: true });
@@ -51,63 +36,27 @@ function SignUp() {
   const {
     register,
     handleSubmit,
-    watch,
     errors,
     setValue,
     triggerValidation,
   } = useForm();
 
   const onSubmit = (data, e) => {
-    console.log("Submit event", e);
-    console.log(data);
-
-    if (data.confirmpassword === null) {
-      setConfirmPasswordIsEmpty(true);
-      setTimeout(() => {
-        history.push(setConfirmPasswordIsEmpty(false));
-      }, 4000);
-      console.log(data.confirmPassword);
-    } else if (data.password !== data.confirmpassword) {
-      setNotMatch(true);
-      setTimeout(() => {
-        history.push(setNotMatch(false));
-      }, 4000);
+    setAdyUsed(false);
+    setNotMatch(false);
+    setSuccess(false);
+    if (data.confirmpassword === data.password) {
+      if (userModel.checkEmail(data.email)) setAdyUsed(true);
+      else {
+        userModel.create(data);
+        setSuccess(true);
+        setNotMatch(false);
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 2000);
+      }
     } else {
-      let usersname = db.collection("users").doc().email;
-      let getDoc = usersname.get().then((doc) => {
-        if (!doc.exists) {
-          db.collection("users")
-            .add({
-              firstName: data.firstname,
-              lastName: data.lastname,
-              email: data.email,
-              phone: data.phone,
-              password: data.password,
-              money: 0,
-            })
-            .then(() => {
-              setFirstname("");
-              setLastname("");
-              setEmail("");
-              setPhone("");
-              setPassword("");
-              setConfirmpassword("");
-              setSuccess(true);
-              //alert(res.data);
-              setTimeout(() => {
-                history.push("/signin");
-              }, 4000);
-            })
-            .catch((err) => console.log(err));
-        }
-      });
-
-      // if (data.email === dbemail) {
-      //   setAdyUsed(true);
-      //   setTimeout(() => {
-      //     history.push(setAdyUsed(false));
-      //   }, 4000);
-      // }
+      setNotMatch(true);
     }
   };
   // watch input value by passing the name of it

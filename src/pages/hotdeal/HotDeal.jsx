@@ -1,12 +1,12 @@
 import React from "react";
-import { Button, Card, Image, Grid, Icon, Input } from "semantic-ui-react";
+import { Card, Grid, Input } from "semantic-ui-react";
 import CardProduct from "../../components/cardProduct/CardProduct";
-import { productlist } from "../productlist/product";
+import fruitModel from "../../storage/fruits";
 
 function HotDeal() {
   const [product, setProduct] = React.useState([]);
   React.useEffect(() => {
-    setProduct(productlist.product());
+    setProduct(fruitModel.get());
   }, []);
 
   React.useEffect(() => {
