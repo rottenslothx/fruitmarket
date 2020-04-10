@@ -26,6 +26,9 @@ let userModel = {
     if (!localStorage.getItem("users"))
       localStorage.setItem("users", JSON.stringify(users));
   },
+  getUsers() {
+    return JSON.parse(localStorage.getItem("users"));
+  },
   getActivedUser() {
     return JSON.parse(localStorage.getItem("user"));
   },
@@ -48,7 +51,9 @@ let userModel = {
   },
   create(body) {
     let thisUsers = JSON.parse(localStorage.getItem("users"));
+    console.log(thisUsers[2]);
     const thisUsers2 = thisUsers.concat({
+      id: thisUsers[thisUsers.length - 1].id + 1,
       email: body.email,
       firstname: body.firstname,
       lastname: body.lastname,

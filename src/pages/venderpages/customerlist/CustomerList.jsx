@@ -1,20 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Table } from "semantic-ui-react";
+import userModel from "../../../storage/users";
 
 class CustomerList extends Component {
   state = { data: [] };
 
   async componentDidMount() {
-    const result = await axios.get("http://localhost:8080/users");
-    var result2 = [];
-    var count = 0;
-    for (var i in result.data) {
-      count++;
-      result.data[i].id = count;
-      result2.push(result.data[i]);
-    }
-    this.setState({ data: result2 });
+    this.setState({ data: userModel.getUsers() });
   }
 
   render() {
@@ -27,7 +20,7 @@ class CustomerList extends Component {
               <Table.HeaderCell width="4">Name</Table.HeaderCell>
               <Table.HeaderCell width="4">E-mail address</Table.HeaderCell>
               <Table.HeaderCell width="4">Phone</Table.HeaderCell>
-              <Table.HeaderCell width="4">All time spend</Table.HeaderCell>
+              <Table.HeaderCell width="4">Balance</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -39,7 +32,7 @@ class CustomerList extends Component {
                 </Table.Cell>
                 <Table.Cell width="4">
                   <div>
-                    {user.firstName} {user.lastName}
+                    {user.firstname} {user.lastname}
                   </div>
                 </Table.Cell>
                 <Table.Cell width="4">
