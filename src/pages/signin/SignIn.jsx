@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import LoginError from "../../components/alert/LoginError";
 import { getFirestore } from "redux-firestore";
-import { userModel } from '../../storage/users'
+import userModel from "../../storage/users";
 
 function SignIn() {
   React.useEffect(() => {
@@ -30,8 +30,12 @@ function SignIn() {
   } = useForm();
 
   const onSubmit = (data, e) => {
-    console.log("Submit event", e);
-    alert(JSON.stringify(data));
+    // console.log("Submit event", e);
+    if (userModel.login(data)) {
+      setTimeout(() => {
+        window.location.href = "/products";
+      }, 2000);
+    }
   };
   // watch input value by passing the name of it
 

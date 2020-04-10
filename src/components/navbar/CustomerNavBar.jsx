@@ -16,6 +16,7 @@ import {
   Visibility,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import userModel from "../../storage/users";
 
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
@@ -126,7 +127,14 @@ class DesktopContainer extends Component {
                   <p>{this.state.username}</p>
                 </Menu.Item>
                 <Menu.Item style={{ marginLeft: "0.5em" }}>
-                  <Button as={Link} to="/signin" inverted={!fixed}>
+                  <Button
+                    as={Link}
+                    onClick={() => {
+                      userModel.logout();
+                      window.location.href = "/login";
+                    }}
+                    inverted={!fixed}
+                  >
                     Log out
                   </Button>
                 </Menu.Item>

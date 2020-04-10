@@ -19,12 +19,21 @@ import Refill from "./pages/refill/Refill";
 import CustomerList from "./pages/venderpages/customerlist/CustomerList";
 import EditProduct from "./pages/venderpages/editproduct/EditProduct";
 import SoldHistory from "./pages/venderpages/soldhistory/SoldHistory";
+import userModel from "./storage/users";
 
 function App() {
+  const [active, setActive] = React.useState(null);
+
+  React.useEffect(() => {
+    userModel.initial();
+    setActive(userModel.getActivedUser());
+  }, []);
+
   return (
     <div className="App">
       <BrowserRouter>
-        <CustomerNavBar />
+        {active && <CustomerNavBar />}
+        {!active && <NavBar />}
         <Switch>
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />

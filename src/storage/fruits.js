@@ -50,7 +50,7 @@ let fruitModel = {
     return true;
   },
   create(body) {
-    fruits.push({
+    fruits = fruits.push({
       id: fruits.length + 1,
       title: body.name,
       detail: body.detail,
