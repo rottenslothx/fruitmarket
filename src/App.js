@@ -20,12 +20,14 @@ import CustomerList from "./pages/venderpages/customerlist/CustomerList";
 import EditProduct from "./pages/venderpages/editproduct/EditProduct";
 import SoldHistory from "./pages/venderpages/soldhistory/SoldHistory";
 import userModel from "./storage/users";
+import fruitModel from "./storage/fruits";
 
 function App() {
   const [active, setActive] = React.useState(null);
 
   React.useEffect(() => {
     userModel.initial();
+    fruitModel.initial();
     setActive(userModel.getActivedUser());
   }, []);
 
