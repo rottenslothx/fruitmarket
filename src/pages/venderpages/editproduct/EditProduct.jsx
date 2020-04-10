@@ -81,8 +81,11 @@ export default function EditProduct() {
     window.location.reload();
   };
 
-  const Delete = (e) => {
+  const Delete = () => {
     console.log(activeDelete);
+    let result = fruitModel.delete(activeDelete.id);
+    setModalOpen(false);
+    window.location.reload();
   };
 
   return (
@@ -193,7 +196,7 @@ export default function EditProduct() {
                     <Button basic color="red" inverted onClick={handleClose}>
                       <Icon name="remove" /> ไม่
                     </Button>
-                    <Button onClick={() => Delete(i)} color="green" inverted>
+                    <Button onClick={() => Delete()} color="green" inverted>
                       <Icon name="checkmark" /> ใช่
                     </Button>
                   </Modal.Actions>
