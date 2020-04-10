@@ -1,20 +1,36 @@
+import userModel from "./users";
+
 let cartModel = {
   getData() {
     // localStorage.setItem("users", JSON.stringify(users));
     return JSON.parse(localStorage.getItem("cart"));
   },
-  addToCart() {
-    let Cart;
-    let newCart;
+  addToCart(name, amount) {
+    let fruits = JSON.parse(localStorage.getItem("fruits"));
+    console.log(fruits);
+    let Cart = [];
+    let fruit = fruits.fruits.find((item) => item.title === name);
     if (JSON.parse(localStorage.getItem("cart"))) {
       Cart = JSON.parse(localStorage.getItem("cart"));
-    }
-    localStorage.setItem("users", JSON.stringify(newCart));
-
-    return JSON.parse(localStorage.getItem("user"));
+      Cart = Cart.concat({
+        imageUrl: fruit.imageUrl,
+        title: fruit.title,
+        amount: amount,
+        price: fruit.price * amount,
+      });
+    } else
+      Cart = Cart.concat({
+        imageUrl: fruit.imageUrl,
+        title: fruit.title,
+        amount: amount,
+        price: fruit.price * amount,
+      });
+    localStorage.setItem("cart", JSON.stringify(Cart));
   },
-  Confirm() {
-    const cart = JSON.parse(localStorage.getItem("cart"));
+  Confirm(total) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    userModel.addMoney(-total, user.id);
+    localStorage.removeItem("cart");
   },
 };
 
