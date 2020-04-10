@@ -25,7 +25,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <CustomerNavBar />
-
         <Switch>
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
