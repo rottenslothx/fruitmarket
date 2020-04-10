@@ -1,6 +1,6 @@
 let fruits = [
   {
-    id: "1",
+    id: 1,
     title: "มะม่วง",
     count: 10,
     detail: "มะม่วงห่าม",
@@ -9,7 +9,7 @@ let fruits = [
       "https://f.btwcdn.com/store-34660/product/49e0623f-5e1d-9c4f-d254-5b7f69a49e9a.jpg",
   },
   {
-    id: "2",
+    id: 2,
     title: "มะกรูด",
     count: 20,
     detail: "มะกรูดหวาน",
@@ -18,7 +18,7 @@ let fruits = [
       "https://i.pinimg.com/originals/d2/32/fa/d232fae1e2ab081c5ebf8f8c002743ac.jpg",
   },
   {
-    id: "3",
+    id: 3,
     title: "มะนาว",
     count: 30,
     detail: "มะนาวลูกใหญ๋",
@@ -32,8 +32,6 @@ let fruitModel = {
   initial() {
     if (!localStorage.getItem("fruits"))
       localStorage.setItem("fruits", JSON.stringify({ fruits }));
-    // this.forceDelete()
-    // this.forceInsert()
   },
   forceInsert() {
     console.log(">> Force insert");
@@ -53,10 +51,12 @@ let fruitModel = {
     catch { return "" }
   },
   delete(id) {
+    console.log(id)
     let fruitsData = this.get()
     let fruits = fruitsData.filter(function(value, index, arr) {
       return value.id != id;
     });
+    console.log(fruits)
     localStorage.setItem("fruits", JSON.stringify({ fruits }));
     console.log(">> Delete data");
     return true;
@@ -78,15 +78,16 @@ let fruitModel = {
   },
   create(body) {
     let fruits = this.get()
-    fruits = fruits.push({
-      id: fruits.length + 1,
+    let latestId = parseInt(fruits[fruits.length-1].id) +1
+    fruits.push({
+      id: latestId,
       title: body.title,
       detail: body.detail,
       count: body.count,
       price: body.price,
       imageUrl: body.imageUrl,
     });
-    localStorage.setItem("fruits", JSON.stringify({ fruits }));
+    localStorage.setItem("fruits", JSON.stringify({ fruits:fruits }));
     return true;
   },
 };
