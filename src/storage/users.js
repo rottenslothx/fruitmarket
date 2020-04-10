@@ -33,8 +33,7 @@ let userModel = {
 
   },
   login(body) {
-    users.users.map( eachRow = () => {
-
+    users.users.map( eachRow => {
     } )
   },
 }

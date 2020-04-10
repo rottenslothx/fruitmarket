@@ -26,6 +26,15 @@ let fruits = [
     imageUrl:
       "https://image.makewebeasy.net/makeweb/0/LP7m63jDK/content/%E0%B8%A1%E0%B8%B0%E0%B8%99%E0%B8%B2%E0%B8%A7.jpg",
   },
+  {
+    id: "4",
+    title: "มะนาว",
+    count: 30,
+    detail: "มะนาวลูกใหญ๋",
+    price: 100,
+    imageUrl:
+      "https://image.makewebeasy.net/makeweb/0/LP7m63jDK/content/%E0%B8%A1%E0%B8%B0%E0%B8%99%E0%B8%B2%E0%B8%A7.jpg",
+  },
 ];
 
 let fruitModel = {
