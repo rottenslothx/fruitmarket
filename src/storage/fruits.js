@@ -78,15 +78,15 @@ let fruitModel = {
   },
   create(body) {
     let fruits = this.get();
-    fruits = fruits.push({
-      id: fruits.length + 1,
+    fruits.push({
+      id: fruits[fruits.length - 1].id +1,
       title: body.title,
       detail: body.detail,
       count: body.count,
       price: body.price,
       imageUrl: body.imageUrl,
     });
-    localStorage.setItem("fruits", JSON.stringify({ fruits:fruits }));
+    localStorage.setItem("fruits", JSON.stringify({ fruits }));
     return true;
   },
 };
