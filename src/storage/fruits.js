@@ -78,6 +78,7 @@ let fruitModel = {
   },
   create(body) {
     let fruits = this.get();
+    fruits.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
     fruits.push({
       id: fruits[fruits.length - 1].id +1,
       title: body.title,
