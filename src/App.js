@@ -30,6 +30,8 @@ function App() {
     userModel.initial();
     if (userModel.getActivedUser()) setRole(userModel.getActivedUser().role);
     fruitModel.initial();
+    // fruitModel.forceDelete();
+    // fruitModel.forceInsert();
     setActive(userModel.getActivedUser());
   }, []);
 

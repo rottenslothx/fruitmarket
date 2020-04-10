@@ -57,11 +57,28 @@ export default function EditProduct() {
   } = useForm();
 
   const Add = () => {
-    console.log(addName);
+    const body = {
+      title: addName,
+      detail: addDetail,
+      count: addAmount,
+      price: AddPrice,
+      imageUrl: addUrl,
+    };
+    let result = fruitModel.create(body);
+    window.location.reload();
   };
 
-  const Edit = (e) => {
-    console.log(e);
+  const Edit = (data) => {
+    const body = {
+      id: data.id,
+      title: data.title,
+      detail: data.detail,
+      count: editAmount,
+      price: editPrice,
+      imageUrl: data.imageUrl,
+    }
+    let result = fruitModel.modify(body);
+    window.location.reload();
   };
 
   const Delete = (e) => {

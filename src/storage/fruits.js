@@ -32,8 +32,6 @@ let fruitModel = {
   initial() {
     if (!localStorage.getItem("fruits"))
       localStorage.setItem("fruits", JSON.stringify({ fruits }));
-    // this.forceDelete()
-    // this.forceInsert()
   },
   forceInsert() {
     console.log(">> Force insert");
@@ -58,6 +56,7 @@ let fruitModel = {
     let fruits = fruitsData.filter(function (value, index, arr) {
       return value.id != id;
     });
+    console.log(fruits)
     localStorage.setItem("fruits", JSON.stringify({ fruits }));
     console.log(">> Delete data");
     return true;
@@ -87,7 +86,7 @@ let fruitModel = {
       price: body.price,
       imageUrl: body.imageUrl,
     });
-    localStorage.setItem("fruits", JSON.stringify({ fruits }));
+    localStorage.setItem("fruits", JSON.stringify({ fruits:fruits }));
     return true;
   },
 };
