@@ -20,6 +20,7 @@ import CustomerList from "./pages/venderpages/customerlist/CustomerList";
 import EditProduct from "./pages/venderpages/editproduct/EditProduct";
 import SoldHistory from "./pages/venderpages/soldhistory/SoldHistory";
 import userModel from "./storage/users";
+import fruitModel from "./storage/fruits";
 
 function App() {
   const [active, setActive] = React.useState(null);
@@ -28,6 +29,7 @@ function App() {
   React.useEffect(() => {
     userModel.initial();
     if (userModel.getActivedUser()) setRole(userModel.getActivedUser().role);
+    fruitModel.initial();
     setActive(userModel.getActivedUser());
   }, []);
 

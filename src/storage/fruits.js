@@ -26,47 +26,67 @@ let fruits = [
     imageUrl:
       "https://image.makewebeasy.net/makeweb/0/LP7m63jDK/content/%E0%B8%A1%E0%B8%B0%E0%B8%99%E0%B8%B2%E0%B8%A7.jpg",
   },
-  {
-    id: "4",
-    title: "มะนาว",
-    count: 30,
-    detail: "มะนาวลูกใหญ๋",
-    price: 100,
-    imageUrl:
-      "https://image.makewebeasy.net/makeweb/0/LP7m63jDK/content/%E0%B8%A1%E0%B8%B0%E0%B8%99%E0%B8%B2%E0%B8%A7.jpg",
-  },
 ];
 
 let fruitModel = {
+  initial() {
+    if (!localStorage.getItem("fruits"))
+      localStorage.setItem("fruits", JSON.stringify({ fruits }));
+    // this.forceDelete()
+    // this.forceInsert()
+  },
+  forceInsert() {
+    console.log(">> Force insert");
+    localStorage.setItem("fruits", JSON.stringify({ fruits }));
+  },
+  forceDelete() {
+    console.log(">> Force insert");
+    localStorage.removeItem("fruits");
+  },
   get() {
-    return fruits;
+    try {
+      let fruit = JSON.parse(localStorage.getItem("fruits"));
+      console.log(fruit);
+      console.log(fruit.fruits);
+      return fruit.fruits;
+    }
+    catch { return "" }
   },
   delete(id) {
-    fruits = fruits.filter((fruit) => fruit.id !== id);
+    let fruitsData = this.get()
+    let fruits = fruitsData.filter(function(value, index, arr) {
+      return value.id != id;
+    });
+    localStorage.setItem("fruits", JSON.stringify({ fruits }));
+    console.log(">> Delete data");
     return true;
   },
   modify(body) {
+    let fruits = this.get()
     let newFruits = fruits.filter((fruit) => fruit.id !== body.id);
     newFruits.push({
-      id: fruits.length + 1,
-      title: body.name,
+      id: body.id,
+      title: body.title,
       detail: body.detail,
-      count: body.total,
+      count: body.count,
       price: body.price,
-      imageUrl: body.Url,
+      imageUrl: body.imageUrl,
     });
     fruits = newFruits;
+    localStorage.setItem("fruits", JSON.stringify({ fruits }));
     return true;
   },
   create(body) {
+    let fruits = this.get()
     fruits = fruits.push({
       id: fruits.length + 1,
-      title: body.name,
+      title: body.title,
       detail: body.detail,
-      count: body.total,
+      count: body.count,
       price: body.price,
-      imageUrl: body.Url,
+      imageUrl: body.imageUrl,
     });
+    localStorage.setItem("fruits", JSON.stringify({ fruits }));
     return true;
   },
 };

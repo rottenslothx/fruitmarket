@@ -19,21 +19,22 @@ export default function EditProduct() {
   const [product, setProduct] = React.useState([]);
   const [price, setPrice] = React.useState([]);
   const [modalOpen, setModalOpen] = React.useState([]);
+  const [fruitsProduct, setFruitsProduct] = React.useState([]);
 
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
 
   React.useEffect(() => {
     setModalOpen(false);
+    setFruitsProduct(fruitModel.get())
     setProduct(productlist.product());
     let sum = 0;
     productlist.product().map((i) => {
       sum += parseInt(i.price);
     });
     setPrice(sum);
-  }, []);
-
-  const fruitsProduct = fruitModel.get()
+  }, []);  
+  
   return (
     <div>
       <Container>
@@ -104,7 +105,7 @@ export default function EditProduct() {
                     <Button basic color='red' inverted onClick={handleClose} >
                       <Icon name='remove' /> ไม่
                     </Button>
-                    <Button color='green' inverted >
+                    <Button type="submit" color='green' inverted >
                       <Icon name='checkmark' /> ใช่
                     </Button>
                   </Modal.Actions>
@@ -129,24 +130,28 @@ export default function EditProduct() {
               <Modal trigger={<Button inverted color="green" size="massive">เพิ่ม</Button>}>
                   <Modal.Header>เพิ่มรายการสินค้า</Modal.Header>
                   <Modal.Content >
-                    <Form>
+                    <Form >
                       <Form.Field>
                         <label>ชื่อรายการสินค้า</label>
-                        <input placeholder='ตัวอย่างเช่น มะม่วง' />
+                        <input placeholder='ตัวอย่างเช่น มะม่วง' name='title' />
+                      </Form.Field>
+                      <Form.Field>
+                        <label>ข้อมูลสินค้า</label>
+                        <input placeholder='ตัวอย่างเช่น มะม่วงสุก ดิบ' name='detail' />
                       </Form.Field>
                       <Form.Field>
                         <label>url รูปภาพ</label>
-                        <input placeholder='ตัวอย่างเช่น มะม่วง http://picture....' />
+                        <input placeholder='ตัวอย่างเช่น มะม่วง http://picture....' name='imageUrl' />
                       </Form.Field>
                       <Form.Field>
                         <label>จำนวน</label>
-                        <input placeholder='ตัวอย่างเช่น 1 2 10 20' />
+                        <input placeholder='ตัวอย่างเช่น 1 2 10 20' name='count'/>
                       </Form.Field>
                       <Form.Field>
                         <label>ราคา</label>
-                        <input placeholder='ตัวอย่างเช่น 500 1000' />
+                        <input placeholder='ตัวอย่างเช่น 500 1000' name='price'/>
                       </Form.Field>                     
-                      <Button type='submit' color="green">เพิ่ม</Button>
+                      <Button type='submit' color="green" onSubmit="">เพิ่ม</Button>
                     </Form>
                     หากต้องการยกเลิกให้กดกลับ
                   </Modal.Content>
